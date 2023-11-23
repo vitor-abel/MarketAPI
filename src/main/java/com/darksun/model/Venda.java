@@ -23,7 +23,8 @@ public class Venda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime dataHora;
+    private LocalDateTime dataHoraInicio;
+    private LocalDateTime dataHoraFim;
 
     @ManyToMany( fetch = FetchType.EAGER )
     @JoinTable( name = "venda_produto", joinColumns = {
