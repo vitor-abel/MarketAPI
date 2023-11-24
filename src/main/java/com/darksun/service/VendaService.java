@@ -37,6 +37,9 @@ public class VendaService {
         Venda venda = buscarPorId(idVenda);
         validarVendaAberta(venda);
         Produto produto = produtoService.buscarPorCodigoDeBarras(codigoDeBarras);
+        if (produto.getQtdEstoque()<1){
+            throw new IllegalArgumentException("Produto indisponível");
+        }
         venda.getProdutos().add(produto);
         return repository.save(venda);
     }
@@ -56,6 +59,9 @@ public class VendaService {
         Venda venda = buscarPorId(idVenda);
         validarVendaAberta(venda);
         venda.setDataHoraFim(LocalDateTime.now());
+        for(Produto produto: venda.getProdutos()){
+            produtoService.decrementarQuantidadeNoEstoque(produto);
+        }
         return repository.save(venda);
     }
 
