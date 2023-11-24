@@ -46,8 +46,14 @@ public class ProdutoService {
         repository.deleteById(codigoDeBarras);
     }
 
+    protected void incrementarQuantidadeNoEstoque(Produto produto, Integer quantidade){
+        produto.setQtdEstoque(produto.getQtdEstoque()+quantidade);
+        repository.save(produto);
+    }
+
     protected void decrementarQuantidadeNoEstoque(Produto produto){
         produto.setQtdEstoque(produto.getQtdEstoque()-1);
         repository.save(produto);
     }
+
 }
