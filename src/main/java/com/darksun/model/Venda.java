@@ -26,9 +26,9 @@ public class Venda implements Serializable {
     private LocalDateTime dataHoraInicio;
     private LocalDateTime dataHoraFim;
 
-    @ManyToMany( fetch = FetchType.EAGER )
-    @JoinTable( name = "venda_produto", joinColumns = {
-            @JoinColumn( name = "venda_id", nullable = false, updatable = false ) }, inverseJoinColumns = {
-            @JoinColumn( name = "codigo_de_barras", nullable = false, updatable = false ) } )
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "venda_produto", joinColumns = {
+            @JoinColumn(name = "venda_id", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "codigo_de_barras", nullable = false, updatable = false)})
     private List<Produto> produtos;
 }
